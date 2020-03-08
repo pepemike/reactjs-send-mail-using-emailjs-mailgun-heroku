@@ -50,6 +50,7 @@ export default class FeedbackForm extends Component {
  // Note: this is using default_service, which will map to whatever
  // default email provider you've set in your EmailJS account.
   sendFeedback(templateId, senderEmail, receiverEmail, feedback, user) {
+    console.log("send mail start ...");
     window.emailjs
       .send('default_service', templateId, {
           senderEmail,
@@ -70,6 +71,9 @@ export default class FeedbackForm extends Component {
   render() {
     return (
       <form className="feedback-form" onSubmit={this.handleSubmit}>
+        {this.state.formEmailSent &&
+        (<div style={{color: 'green'}}>Succeed sending mail</div>)
+        }
         <h1>Your Feedback</h1>
         <textarea
           className="text-input"
